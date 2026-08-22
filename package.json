@@ -1,0 +1,21 @@
+{
+  "name": "shortlist-ai",
+  "version": "1.0.0",
+  "description": "An explainable, human-in-the-loop recruitment screening agent demo.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "mammoth": "^1.10.0",
+    "multer": "^2.0.2",
+    "pdf-parse": "1.1.1"
+  }
+}
