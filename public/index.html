@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ShortlistAI — an explainable, human-in-the-loop recruitment screening agent demo.">
+  <title>ShortlistAI — Recruitment Screening Agent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#top" aria-label="ShortlistAI home">
+        <span class="brand-mark" aria-hidden="true">S</span>
+        <span>Shortlist<span>AI</span></span>
+      </a>
+
+      <nav class="workflow-nav" aria-label="Workflow">
+        <p class="eyebrow">Workflow</p>
+        <a class="nav-item active" href="#role-section"><span>1</span> Define role</a>
+        <a class="nav-item" href="#upload-section"><span>2</span> Add résumés</a>
+        <a class="nav-item" href="#results-section"><span>3</span> Review evidence</a>
+      </nav>
+
+      <div class="principles-card">
+        <div class="shield-icon" aria-hidden="true">✓</div>
+        <p class="eyebrow">Responsible by design</p>
+        <strong>Human judgment stays in control.</strong>
+        <p>Scores organize evidence. They never make the hiring decision.</p>
+      </div>
+
+      <div class="sidebar-footer">
+        <span class="status-dot" id="apiDot"></span>
+        <span id="apiStatus">Checking agent…</span>
+      </div>
+    </aside>
+
+    <main id="top">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Recruiting workspace</p>
+          <h1>Candidate screening</h1>
+        </div>
+        <div class="topbar-actions">
+          <span class="mode-badge" id="modeBadge">Demo mode</span>
+          <button class="avatar" type="button" aria-label="Demo recruiter profile">DR</button>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <section class="intro-panel">
+          <div>
+            <p class="eyebrow accent">Evidence, not instinct</p>
+            <h2>Build a fairer shortlist,<br>one résumé at a time.</h2>
+            <p>Compare job-related evidence, surface gaps, and prepare structured interviews—with every decision left to a human.</p>
+          </div>
+          <div class="intro-metric" aria-label="Agent capabilities">
+            <span class="metric-number">4</span>
+            <span>agent actions</span>
+            <small>Read · Compare · Question · Schedule</small>
+          </div>
+        </section>
+
+        <form id="screeningForm">
+          <section class="card" id="role-section">
+            <div class="card-heading">
+              <div class="step-number">01</div>
+              <div>
+                <h3>Define the role</h3>
+                <p>Give the agent a consistent, job-related evaluation rubric.</p>
+              </div>
+              <button class="text-button" id="loadDemoButton" type="button">Load example</button>
+            </div>
+
+            <div class="form-grid">
+              <label class="field field-wide-sm">
+                <span>Role title <b>*</b></span>
+                <input id="roleTitle" name="roleTitle" type="text" placeholder="e.g. Backend Engineer" required>
+              </label>
+              <label class="field">
+                <span>Minimum experience</span>
+                <div class="input-suffix">
+                  <input id="minExperience" name="minExperience" type="number" value="3" min="0" max="30">
+                  <span>years</span>
+                </div>
+              </label>
+              <label class="field">
+                <span>Required skills <b>*</b></span>
+                <input id="requiredSkills" name="requiredSkills" type="text" placeholder="Node.js, PostgreSQL, REST APIs">
+                <small>Separate skills with commas.</small>
+              </label>
+              <label class="field">
+                <span>Preferred skills</span>
+                <input id="preferredSkills" name="preferredSkills" type="text" placeholder="AWS, Docker, TypeScript">
+                <small>Used as bonus evidence, not a hard filter.</small>
+              </label>
+              <label class="field full-width">
+                <span>Job description</span>
+                <textarea id="jobDescription" name="jobDescription" rows="5" placeholder="Paste responsibilities, outcomes, and role context…"></textarea>
+              </label>
+            </div>
+          </section>
+
+          <section class="card" id="upload-section">
+            <div class="card-heading">
+              <div class="step-number">02</div>
+              <div>
+                <h3>Add candidate résumés</h3>
+                <p>PDF, DOCX, TXT, or MD · up to 10 files · 5 MB each</p>
+              </div>
+            </div>
+
+            <label class="drop-zone" id="dropZone">
+              <input id="resumeInput" name="resumes" type="file" accept=".pdf,.docx,.txt,.md" multiple hidden>
+              <span class="upload-icon" aria-hidden="true">↥</span>
+              <strong>Drop résumés here</strong>
+              <span>or <u>browse your files</u></span>
+            </label>
+            <div class="file-list" id="fileList" aria-live="polite"></div>
+
+            <div class="action-row">
+              <label class="ai-toggle">
+                <input id="useAI" type="checkbox" checked>
+                <span class="toggle-track"><span></span></span>
+                <span>
+                  <strong>AI narrative enrichment</strong>
+                  <small id="aiToggleNote">Requires an API key; local scoring always remains auditable.</small>
+                </span>
+              </label>
+              <button class="primary-button" id="analyzeButton" type="submit">
+                <span>Analyze candidates</span>
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
+          </section>
+        </form>
+
+        <section class="results-section" id="results-section" hidden>
+          <div class="results-header">
+            <div>
+              <p class="eyebrow accent">Agent completed</p>
+              <h2>Review the evidence</h2>
+              <p id="resultsSubtitle">Every recommendation needs recruiter approval.</p>
+            </div>
+            <button class="secondary-button" id="exportButton" type="button">Export CSV</button>
+          </div>
+
+          <div class="stats-grid" id="statsGrid"></div>
+
+          <div class="review-layout">
+            <div class="candidate-list-panel">
+              <div class="panel-label-row">
+                <span>Candidates</span>
+                <span id="candidateCount">0 total</span>
+              </div>
+              <div class="candidate-list" id="candidateList"></div>
+            </div>
+            <article class="candidate-detail" id="candidateDetail" aria-live="polite"></article>
+          </div>
+
+          <div class="audit-note">
+            <span aria-hidden="true">i</span>
+            <p><strong>How the score works:</strong> 55% required skills, 20% preferred skills, 20% experience baseline, and 5% evidence completeness. Names and personal details are excluded from AI evaluation.</p>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <dialog id="scheduleDialog">
+    <form id="scheduleForm" method="dialog">
+      <div class="dialog-heading">
+        <div>
+          <p class="eyebrow accent">Human-approved action</p>
+          <h3>Prepare interview invitation</h3>
+        </div>
+        <button class="icon-button" id="closeDialog" type="button" aria-label="Close">×</button>
+      </div>
+      <input id="scheduleCandidateId" type="hidden">
+      <div class="form-grid dialog-grid">
+        <label class="field">
+          <span>Date and time</span>
+          <input id="startTime" type="datetime-local" required>
+        </label>
+        <label class="field">
+          <span>Duration</span>
+          <select id="duration">
+            <option value="30">30 minutes</option>
+            <option value="45" selected>45 minutes</option>
+            <option value="60">60 minutes</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Interviewer</span>
+          <input id="interviewerName" type="text" value="Hiring Team">
+        </label>
+        <label class="field">
+          <span>Meeting link</span>
+          <input id="meetingLink" type="url" placeholder="https://meet.example.com/…">
+        </label>
+      </div>
+      <button class="primary-button full-button" type="submit">Prepare invitation</button>
+      <div class="invitation-preview" id="invitationPreview" hidden></div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>
