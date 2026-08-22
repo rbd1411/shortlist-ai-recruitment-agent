@@ -1,0 +1,20 @@
+Meera Iyer
+meera.iyer@example.com | +91 99887 66554
+
+DATA ANALYST
+
+SUMMARY
+Data analyst with 4 years of experience producing operational dashboards and business reports.
+
+EXPERIENCE
+Data Analyst, Marketlane Retail | 2021 - Present
+- Built dashboards using Power BI and Tableau.
+- Wrote SQL queries for weekly revenue and inventory reporting.
+- Automated spreadsheet workflows using Python and pandas.
+- Presented findings to finance and operations stakeholders.
+
+SKILLS
+SQL, Python, Power BI, Tableau, Excel, pandas, stakeholder communication
+
+EDUCATION
+Bachelor of Commerce

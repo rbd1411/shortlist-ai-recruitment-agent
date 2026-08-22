@@ -1,0 +1,25 @@
+Asha Sharma
+asha.sharma@example.com | +91 98765 43210
+
+BACKEND ENGINEER
+
+SUMMARY
+Backend engineer with 5 years of experience building APIs and data-heavy SaaS products. Comfortable owning services from design through production support.
+
+EXPERIENCE
+Senior Software Engineer, Northstar Labs | 2022 - Present
+- Built Node.js and TypeScript services supporting 1.2 million monthly requests.
+- Designed REST APIs for billing and account management; reduced median response time by 32%.
+- Improved PostgreSQL indexes and queries, cutting a reporting job from 14 minutes to 3 minutes.
+- Containerized services with Docker and deployed workloads on AWS.
+- Reviewed code through Git-based pull requests and mentored two junior engineers.
+
+Software Engineer, Cedar Systems | 2020 - 2022
+- Maintained Express services, PostgreSQL schemas, and internal APIs.
+- Introduced automated integration tests and production dashboards.
+
+SKILLS
+Node.js, Express, TypeScript, PostgreSQL, REST APIs, Git, Docker, AWS, Jest, CI/CD
+
+EDUCATION
+B.Tech in Computer Science

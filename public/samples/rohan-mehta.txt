@@ -1,0 +1,24 @@
+Rohan Mehta
+rohan.mehta@example.com | +91 91234 56789
+
+SOFTWARE DEVELOPER
+
+SUMMARY
+Software developer with 3 years of professional experience working on web applications and internal tools.
+
+EXPERIENCE
+Software Developer, Paperkite Technologies | 2023 - Present
+- Developed Node.js services and REST APIs for internal inventory tools.
+- Used Git for version control and participated in weekly code reviews.
+- Worked with MongoDB and Redis for application data.
+- Partnered with frontend developers to define API contracts.
+
+Junior Developer, Brightworks | 2022 - 2023
+- Fixed production bugs and wrote JavaScript tests.
+- Created basic Docker development environments.
+
+SKILLS
+JavaScript, Node.js, Express, REST APIs, MongoDB, Redis, Git, Docker
+
+EDUCATION
+B.Sc. in Information Technology
